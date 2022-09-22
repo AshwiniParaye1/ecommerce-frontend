@@ -55,19 +55,21 @@ export default function NewProduct() {
         }
       },
       (error) => {
-        // Handle unsuccessful uploads
+        console.error(error);
       },
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        console.log("uploadTask.snapshot.ref", uploadTask.snapshot.ref);
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, categories: cat };
+          console.log("product ===", product);
           addProduct(product, dispatch);
         });
       }
     );
   };
-
+  console.log("file", file);
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
