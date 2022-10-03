@@ -58,9 +58,17 @@ export default function ProductList() {
       },
     },
   ];
-
+  console.log("column", columns);
+  console.log("products", products);
   return (
     <div className="productList">
+      <div className="productTitleContainer">
+        <h1 className="productTitle">Products</h1>
+        <Link to="/newproduct">
+          <button className="productsAddButton">Create</button>
+        </Link>
+      </div>
+      <br />
       <DataGrid
         rows={products}
         disableSelectionOnClick

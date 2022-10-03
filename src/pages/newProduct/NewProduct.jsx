@@ -60,16 +60,20 @@ export default function NewProduct() {
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        console.log("uploadTask.snapshot.ref", uploadTask.snapshot.ref);
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, categories: cat };
-          console.log("product ===", product);
+          if (product) {
+            console.log("updated");
+          } else {
+            console.log("not updated");
+          }
           addProduct(product, dispatch);
+          console.log("dispatch", dispatch);
         });
       }
     );
   };
-  console.log("file", file);
+
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>

@@ -1,7 +1,7 @@
 import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
+// import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { userRequest } from "../../requestMethods";
@@ -16,12 +16,14 @@ export default function UserList() {
         const res = await userRequest.get("users/");
         let data = res.data;
         let rowData = [];
+        console.log("data ===", data);
         if (data.length) {
           for (let i = 0; i < data.length; i++) {
             let obj = {};
             obj.id = data[i]._id;
             obj.email = data[i].email;
             obj.username = data[i].username;
+            obj.number = data[i].number;
             rowData.push(obj);
           }
         }
@@ -43,17 +45,9 @@ export default function UserList() {
       field: "username",
       headerName: "User",
       width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
     },
     { field: "email", headerName: "Email", width: 200 },
-
+    { field: "number", headerName: "Phone", width: 200 },
     {
       field: "action",
       headerName: "Action",

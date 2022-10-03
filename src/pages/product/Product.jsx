@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./product.css";
 import Chart from "../../components/chart/Chart";
-import { productData } from "../../dummyData";
+// import { productData } from "../../dummyData";
 import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
@@ -38,9 +38,9 @@ export default function Product() {
     const getStats = async () => {
       try {
         const res = await userRequest.get("orders/income?pid=" + productId);
-        const list = res.data.sort((a,b)=>{
-            return a._id - b._id
-        })
+        const list = res.data.sort((a, b) => {
+          return a._id - b._id;
+        });
         list.map((item) =>
           setPStats((prev) => [
             ...prev,
@@ -58,9 +58,9 @@ export default function Product() {
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Product</h1>
-        <Link to="/newproduct">
+        {/* <Link to="/newproduct">
           <button className="productAddButton">Create</button>
-        </Link>
+        </Link>  */}
       </div>
       <div className="productTop">
         <div className="productTopLeft">
