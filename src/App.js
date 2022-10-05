@@ -22,10 +22,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        {admin && (
+        {admin ? (
           <>
             <Topbar />
             <div className="container">
@@ -53,6 +50,10 @@ function App() {
               </Route>
             </div>
           </>
+        ) : (
+          <Route exact path="/login">
+            <Login />
+          </Route>
         )}
         {!admin && <Redirect to="/login" />}
       </Switch>

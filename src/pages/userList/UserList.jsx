@@ -16,7 +16,6 @@ export default function UserList() {
         const res = await userRequest.get("users/");
         let data = res.data;
         let rowData = [];
-        console.log("data ===", data);
         if (data.length) {
           for (let i = 0; i < data.length; i++) {
             let obj = {};

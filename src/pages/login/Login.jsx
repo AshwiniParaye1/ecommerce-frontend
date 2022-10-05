@@ -8,14 +8,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+
   const { isFetchin, error, currentUser } = useSelector((state) => state.user);
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
+  if (currentUser) {
+    history.replace("/");
+    return null;
+  }
 
-  // if (currentUser) {
-  // }
+  console.log("ERROR", error);
 
   return (
     <div
@@ -46,8 +50,9 @@ const Login = () => {
       >
         Login
       </button>
-      {currentUser && <Redirect to={"/"} />}
-      {error && <span className="text-red-500">Something Went Wrong...</span>}
+      {error && <h4>Something went wrong...</h4>}
+      {/* {currentUser && <Redirect to={"/"} />} */}
+      {/* {!isFetchin && <h4>Something Went Wrong</h4>} */}
     </div>
   );
 };
