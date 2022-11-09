@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+    env_file:
+      "/home/ubuntu/projects/ecommerce-backend/.env"
+    build:
+      context: /home/ubuntu/projects/ecommerce-backend
+      dockerfile: /home/ubuntu/projects/ecommerce-backend/Dockerfile
+    image: "ecommerce-backend:latest"
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: /home/ubuntu/projects/ecommerce-admin-frontend
+      dockerfile: /home/ubuntu/projects/ecommerce-admin-frontend/Dockerfile
+    image: "frontend:latest"
+    ports:
+      - "3000:3000"
+    links:
+      - "backend:be"
